@@ -33,6 +33,11 @@ public class UserBonusTransactionListener implements RocketMQLocalTransactionLis
         }
     }
 
+    /**
+     * 查询本地事务是否已经commit
+     * @param msg
+     * @return
+     */
     @Override
     public RocketMQLocalTransactionState checkLocalTransaction(Message msg) {
         String transactionId = (String) msg.getHeaders().get(RocketMQHeaders.TRANSACTION_ID);

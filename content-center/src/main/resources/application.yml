@@ -18,6 +18,13 @@ spring:
         enabled: false # 关闭对spring mvc 的保护
       transport:
         dashboard: localhost:8888
+    stream:
+      rocketmq:
+        binder:
+          name-server: localhost:9876
+      bindings:
+        output:
+          destination: stream-test-topic
   application:
     name: content-center
   main:

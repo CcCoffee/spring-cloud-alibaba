@@ -7,6 +7,9 @@ import com.study.contentcenter.feign.TestFeignClient;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.messaging.Source;
+import org.springframework.messaging.MessageHeaders;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,5 +54,17 @@ public class TestController {
     @GetMapping("/sentinel-rest-template")
     public UserDTO sentinelRestTemplate(@RequestParam(name = "id") Integer id){
         return restTemplate.getForObject("http://user-center/users/{id}", UserDTO.class, id);
+    }
+
+    @Autowired
+    private Source source;
+
+    @GetMapping("/stream-message")
+    public String sendStreamMessage(){
+        source.output().send(
+                MessageBuilder
+                    .withPayload("消息体")
+                    .build());
+        return "success";
     }
 }
