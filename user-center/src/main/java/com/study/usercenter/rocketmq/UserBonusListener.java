@@ -1,4 +1,4 @@
-package com.study.usercenter.listener;
+package com.study.usercenter.rocketmq;
 
 import com.study.usercenter.dao.user.BonusEventLogMapper;
 import com.study.usercenter.dao.user.UserMapper;

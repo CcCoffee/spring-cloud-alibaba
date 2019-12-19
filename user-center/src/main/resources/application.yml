@@ -18,6 +18,9 @@ spring:
         input:
           destination: stream-test-topic
           group: binder-group
+        my-input:
+          destination: stream-my-topic
+          group: my-binder-group
   application:
     name: user-center
 management:

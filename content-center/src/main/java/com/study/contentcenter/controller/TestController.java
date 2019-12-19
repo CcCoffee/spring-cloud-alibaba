@@ -4,6 +4,7 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.study.contentcenter.domain.dto.user.UserDTO;
 import com.study.contentcenter.feign.TestFeignClient;
+import com.study.contentcenter.rocketmq.MySource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,18 @@ public class TestController {
                 MessageBuilder
                     .withPayload("消息体")
                     .build());
+        return "success";
+    }
+
+    @Autowired
+    private MySource mySource;
+
+    @GetMapping("/stream-my-source")
+    public String sendStreamMessageByMySource(){
+        mySource.output().send(
+                MessageBuilder
+                        .withPayload("消息体")
+                        .build());
         return "success";
     }
 }

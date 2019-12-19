@@ -25,6 +25,8 @@ spring:
       bindings:
         output:
           destination: stream-test-topic
+        my-output:
+          destination: stream-my-topic
   application:
     name: content-center
   main:
