@@ -50,6 +50,10 @@ feign:
     max-connections-per-route: 50
   sentinel:
     enabled: true
+  client:
+    config:
+      default:
+        loggerLevel: full
 management:
   endpoints:
     web:
